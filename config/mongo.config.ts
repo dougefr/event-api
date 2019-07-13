@@ -2,14 +2,8 @@ import { MongoClient } from "mongodb";
 import { logger } from ".";
 import env from "./env.config";
 
-const uri =
-  "mongodb+srv://dito-service:lcV6leeS3WZNXnD0@cluster0-kep4u.mongodb.net/dito-service?retryWrites=true&w=majority";
-
 async function connectToMongo() {
-  const mongoClient = new MongoClient(
-    env.isTest ? (global as any).__MONGO_URI__ : uri,
-    { useNewUrlParser: true }
-  );
+  const mongoClient = new MongoClient(env.mongoURI, { useNewUrlParser: true });
 
   await mongoClient.connect();
 
