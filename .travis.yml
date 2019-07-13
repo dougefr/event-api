@@ -3,6 +3,7 @@ sudo: false
 node_js:
   - 10
 install:
-  - npm install && npm run build
+  - npm install
+  - npm run build
 script:
 - npm test
