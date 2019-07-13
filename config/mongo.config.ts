@@ -22,7 +22,7 @@ async function connectToMongo() {
   }
 }
 
-export async function getMongoDB() {
+export const getMongoDB = (() => {
   let mongoClient: MongoClient | null = null;
 
   async function mongoClientManager() {
@@ -33,5 +33,5 @@ export async function getMongoDB() {
     return mongoClient;
   }
 
-  return (await mongoClientManager()).db("dito-service");
-}
+  return async () => (await mongoClientManager()).db("events");
+})();
