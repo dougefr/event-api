@@ -71,11 +71,11 @@ describe("/events", () => {
       expect(res.status).toBe(200);
       expect(res.body).toBeDefined();
       expect(res.body).toBeInstanceOf(Array);
-      expect(res.body.length > 0).toBeTruthy();
+      expect(res.body.length).toBeGreaterThan(0);
 
       res.body.forEach((e: any) => {
         expect(e.event).toBeDefined();
-        expect(e.event.search(search) >= 0).toBeTruthy();
+        expect(e.event.search(search)).toBeGreaterThanOrEqual(0);
       });
     });
 
@@ -120,7 +120,37 @@ describe("/events", () => {
 
       res.body.forEach((e: any) => {
         expect(e.event).toBeDefined();
-        expect(e.event.search(search) >= 0).toBeTruthy();
+        expect(e.event.search(search)).toBeGreaterThanOrEqual(0);
+      });
+    });
+  });
+
+  describe("GET /events/timeline", () => {
+    test("Should return a timeline", async () => {
+      const res = await request.get("/events/timeline");
+
+      expect(res.status).toBe(200);
+      expect(res.body).toBeDefined();
+      expect(res.body).toEqual({
+        timeline: [
+          {
+            products: [{ name: "Tenis Preto", price: 120 }],
+            revenue: 120.0,
+            store_name: "BH Shopping",
+            timestamp: "2016-10-02T11:37:31.2300892-03:00",
+            transaction_id: "3409340"
+          },
+          {
+            products: [
+              { name: "Camisa Azul", price: 100 },
+              { name: "Calça Rosa", price: 150 }
+            ],
+            revenue: 250.0,
+            store_name: "Patio Savassi",
+            timestamp: "2016-09-22T13:57:31.2311892-03:00",
+            transaction_id: "3029384"
+          }
+        ]
       });
     });
   });
