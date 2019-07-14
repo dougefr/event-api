@@ -9,7 +9,13 @@ const env = {
 
 env.mongoURI = env.isTest
   ? (global as any).__MONGO_URI__
-  : "mongodb+srv://dito-service:lcV6leeS3WZNXnD0@cluster0-kep4u.mongodb.net/dito-service?retryWrites=true&w=majority";
+  : process.env.MONGO_URI;
+
+if (!env.mongoURI) {
+  throw new Error(
+    "Environment variable MONGO_URI must be defined to run this application"
+  );
+}
 
 logger.info(`Enviroment: ${JSON.stringify(env)}`);
 

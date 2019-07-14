@@ -1,24 +1,24 @@
 {
-  "name": "test-dito",
+  "name": "event-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "description": "An event API",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "NODE_ENV=development ts-node-dev --respawn --transpileOnly index.ts NODE_ENV=development",
+    "dev": "NODE_ENV=development ts-node-dev --respawn --transpileOnly index.ts",
     "prod": "NODE_ENV=production node dist/index.js",
     "lint": "tslint --project . --fix",
     "format": "prettier --write './**/*.{js,json,ts}' '!./node_modules/**'",
     "test": "jest --coverage"
   },
   "author": "dougefr",
+  "repository": "https://github.com/dougefr/event-api",
   "license": "ISC",
   "dependencies": {
     "ajv": "6.10.1",
     "koa": "2.7.0",
     "koa-body": "4.1.0",
     "koa-router": "7.4.0",
-    "lodash": "4.17.14",
     "mongodb": "3.2.7",
     "winston": "3.2.1"
   },
@@ -27,7 +27,6 @@
     "@types/jest": "24.0.15",
     "@types/koa": "2.0.49",
     "@types/koa-router": "7.0.42",
-    "@types/lodash": "4.14.136",
     "@types/mongodb": "3.1.28",
     "@types/node": "12.6.2",
     "@types/supertest": "2.0.8",

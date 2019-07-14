@@ -6,7 +6,7 @@ export async function LoggerMiddleware(
   ctx: Koa.Context,
   next: () => Promise<any>
 ) {
-  if (!env.isTest) {
+  if (env.isDevelopment) {
     logger.info(`${ctx.method} ${ctx.url}`);
   }
 

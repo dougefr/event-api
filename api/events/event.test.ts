@@ -1,4 +1,3 @@
-import _ from "lodash";
 import supertest from "supertest";
 import server from "../..";
 
@@ -105,9 +104,9 @@ describe("/events", () => {
     test("Should find a maximum of 10 results", async () => {
       const { event } = await createOneRandomEvent();
 
-      _.range(0, 50).forEach(async i => {
+      for (let i = 0; i < 50; i++) {
         await createOneEvent(event);
-      });
+      }
 
       const search = event.event.substr(0, 2);
 
