@@ -1,8 +1,8 @@
 import Router from "koa-router";
-import { createOne } from "./event.controller";
+import { autocomplete, createOne } from "./event.controller";
 
 export const EventRouter = new Router({
   prefix: "/events"
 })
   .post("/", createOne)
-  .get("/", createOne);
+  .get("/autocomplete", autocomplete);
