@@ -1,10 +1,12 @@
 import Koa from "koa";
-import { getMongoDB } from "../config";
+import { Db } from "mongodb";
 
-export async function MongoMiddleware(
-  ctx: Koa.Context,
-  next: () => Promise<any>
-) {
-  ctx.state.mongoDB = await getMongoDB();
-  await next();
+export function MongoMiddlewareFactory(db: Db) {
+  return async function MongoMiddleware(
+    ctx: Koa.Context,
+    next: () => Promise<any>
+  ) {
+    ctx.state.mongoDB = db;
+    await next();
+  };
 }

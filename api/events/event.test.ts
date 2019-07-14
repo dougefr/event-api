@@ -1,7 +1,9 @@
+import { Server } from "net";
 import supertest from "supertest";
-import server from "../..";
+import { createServer } from "../../config";
 
 describe("/events", () => {
+  let server: Server;
   let request: supertest.SuperTest<supertest.Test>;
 
   async function createOneRandomEvent() {
@@ -21,7 +23,8 @@ describe("/events", () => {
       .send(event);
   }
 
-  beforeAll(() => {
+  beforeAll(async () => {
+    server = await createServer();
     request = supertest(server);
   });
 

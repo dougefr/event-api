@@ -23,6 +23,7 @@ export async function createOne(ctx: ICustomContext) {
   if (validateEvent(body)) {
     const events = ctx.state.mongoDB.collection("events");
     const res = await events.insertOne(body);
+    events.createIndex({ event: 1 });
 
     // Return the stored event
     ctx.body = await events.findOne(res.insertedId);
@@ -38,7 +39,7 @@ export async function autocomplete(ctx: ICustomContext) {
   if (q && q.length >= 2) {
     const events = ctx.state.mongoDB.collection("events");
     ctx.body = await events
-      .find({ event: new RegExp(q, "i") })
+      .find({ event: new RegExp(`^${q}`) })
       .limit(10)
       .toArray();
   } else {
