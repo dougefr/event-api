@@ -1,6 +1,5 @@
 import Koa from "koa";
-import { logger } from "../config";
-import env from "../config/env.config";
+import { env, logger } from "../config";
 
 export async function LoggerMiddleware(
   ctx: Koa.Context,

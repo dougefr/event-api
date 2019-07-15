@@ -1,6 +1,5 @@
 import { MongoClient } from "mongodb";
-import { logger } from ".";
-import env from "./env.config";
+import { env, logger } from ".";
 
 export async function connectToMongo() {
   const mongoClient = new MongoClient(env.mongoURI, { useNewUrlParser: true });

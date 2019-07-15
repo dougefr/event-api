@@ -1,7 +1,7 @@
 import http from "http";
 import Koa from "koa";
 import koaBody from "koa-body";
-import { connectToMongo } from ".";
+import { connectToMongo, logger } from ".";
 import * as api from "../api";
 import { LoggerMiddleware, MongoMiddlewareFactory } from "../middleware";
 import { ICustomState } from "../type";
@@ -20,6 +20,8 @@ export async function createServer() {
   // Inicializa o servidor
   const server = http.createServer(app.callback());
   server.listen(3000);
+
+  logger.info("Server is listening on port 3000");
 
   return server;
 }
