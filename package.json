@@ -18,7 +18,7 @@
   "repository": "https://github.com/dougefr/event-api",
   "license": "ISC",
   "dependencies": {
-    "ajv": "6.10.1",
+    "ajv": "6.12.3",
     "axios": "0.19.0",
     "koa": "2.7.0",
     "koa-body": "4.1.0",
